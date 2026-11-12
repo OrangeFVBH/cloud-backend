@@ -35,6 +35,11 @@ def echo():
     data = request.get_json(silent=True) or {}
     return jsonify({"you_sent": data})
  
- 
+
+@app.get("/hello")
+def hello():
+    name = request.args.get("name", "гость")
+    return jsonify({"hello": name})
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
